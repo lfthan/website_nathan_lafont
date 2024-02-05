@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nathan Lafont | Carte</title>
+
+        <!-- Librairie OpenLayers -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css" />
+        <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.15.1/build/ol.js"></script>
+
+        <!-- Extension Géoportail pour OpenLayers-->
+        <link rel="stylesheet" href="https://ignf.github.io/geoportal-sdk/latest/dist/2d/GpSDK2D.css" />
+        <!--lien vers le fichier autoconf en local-->
+        <script src="https://ignf.github.io/geoportal-sdk/latest/dist/2d/GpSDK2D.js">
+        </script>
+
+        <!-- lien vers le fichier css en local-->
+        <link rel="stylesheet" type="text/css" href="../css/carte.css">
+
+    </head>
+
+    <body>
+
+        <!---------------------- HAUT DE PAGE -------------------- -->
+
+        <div class="header">
+            <h1> Nathan Lafont </h1>
+            <h2> SIGiste ambitieux </h2>
+        </div>
+
+
+        <!-- -------------------- MENU -------------------- -->
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <div class="deroulant"><a href="#">Curriculum Vitae</a>
+                    <div class="sous">
+                        <a href="./cv.html">Curriculum Vitae</a>
+                        <a href="../pdf/nathan_lafont_resume.pdf">English resume (pdf)</a>
+                    </div>
+                </div>
+                <li><a href="./carte.html">Ma carte</a></li>
+                <div class="deroulant"><a href="#">À propos</a>
+                    <div class="sous">
+                        <a href="">Parcours</a>
+                        <a href="">Projets</a>
+                        <a href="./passions.html">Passions</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+
+
+        <!-- -------------------- CORPS DE PAGE -------------------- -->
+
+        <div class="row">
+
+            <div class="leftcolumn">
+
+                <div class="card">
+                    <h2> Ma carte </h2>
+                    <h5>Lieux de vie et voyages</h5>
+                    <div id="carte"></div>
+                    <script src="../javascript/carte.js"></script>
+                    <p>
+                        Cette carte recense tous les lieux dans lesquels j'ai vécu de ma naissance à ce jour, représentés par des figurés ponctuels.
+                        Elle indique également les pays que j'ai visité au cour de ma vie.  
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="rightcolumn">
+
+                <div class="card">
+                    <h3>Mes voyages et lieux de vie </h3>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </body>
+
+</html>

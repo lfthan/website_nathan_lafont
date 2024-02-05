@@ -1,0 +1,499 @@
+/*  CSS for cv.html
+    Author : Nathan Lafont
+    12/10/2023
+    CV TEMPLATE by : Artem, URL : https://uifresh.net/professional-html-resume-templates-free/
+*/
+
+/* -------------------- RESET CSS -------------------- */
+
+html {
+  box-sizing: border-box;
+}
+
+*:after, *:before {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Avenir, sans-serif;
+  box-sizing: inherit;
+}
+
+
+/*** -------------------- BODY -------------------- ***/
+
+body {
+  font-family: Helvetica, sans-serif;
+  padding: 10px;
+  padding-bottom: 150px;
+  background-image: linear-gradient(to bottom right, #ffffff, #325268);
+  background-repeat:no-repeat;
+  overflow:visible;
+}
+
+/** -------------------- HAUT-DE-PAGE -------------------- **/
+
+.header {
+  background-image: url(../images/norvege/ersfjordboten_moi.jpg);
+  background-size: 120% ;
+  background-position: 70% 59% ;
+  background-attachment: local;
+  text-align: center;
+  padding: 60px;
+  margin-left: 10% ;
+  margin-right: 10% ;
+}
+
+.header h1 {
+  font-family: Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: #ccc;
+}
+
+.header h2 {
+  font-family: Helvetica, sans-serif;
+  color: #ccc;
+  font-size: 16px;
+}
+
+/** -------------------- MENU -------------------- **/
+
+nav {
+  width: 80%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.925);
+  position: sticky;
+  top: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+  z-index: 999;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  float: left;
+  width: 25%;
+  text-align: center;
+  position: relative;
+}
+
+nav ul .deroulant{
+  float: left;
+  width: 25%;
+  text-align: center;
+  position: relative;
+}
+
+nav ul::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0px;
+}
+
+nav a:hover {
+  color: rgb(102, 147, 177);
+  border-bottom: 2px solid rgb(50, 77, 101);
+}
+
+/* -------------------- SOUS-MENUS -------------------- */
+
+.sous {
+  display: none;
+  box-shadow: 0px 1px 2px #ccc ;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.deroulant:hover .sous{
+  display: block;
+}
+
+.sous li {
+  float : none;
+  width: 100%;
+  text-align: left;
+}
+
+.sous a {
+  padding: 10px;
+  border-bottom: none;
+}
+
+.sous a:hover {
+  border-bottom: none;
+  background-color: RGBa(200,200,200,0.1);
+}
+
+.deroulant > a::after {
+  content: "  ▼";
+  font-size: 12px;
+}
+
+/* -------------------- CORPS DE PAGE -------------------- */
+
+/* -------------------- CV --------------------  */
+
+.cvGrid {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.profile {
+  flex-basis: 30%;
+  margin-right:40px;
+  background-color: #39383a;
+  color: #ababab;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  border-top-left-radius: 25px;
+}
+
+.profile-photo{
+  height: 320px;
+  margin: 40px;
+  border-radius: 25px;
+  background-image: url("../images/IMG_5767.JPG");
+  background-size: cover;
+  background-position: 0% 36%;
+  background-repeat: no-repeat;
+
+}
+
+.profile-info {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 50px;
+  padding-bottom: 70px;
+}
+
+.profile-text {
+  font-size: 14px;
+  line-height: 24.19px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 24px;
+  padding-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+
+.heading-light {
+  color: #ffffff;
+  border-bottom: 2px #5a5a5a dashed;
+
+}
+
+.contacts {
+  margin-bottom: 70px;
+}
+
+.contacts-title {
+  color: #fff;
+  margin-bottom: 13px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.contacts-text {
+  color: #ababab;
+  text-decoration: none;
+  padding-left: 27px;
+  line-height: 20.97px;
+}
+
+.contacts-item {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 2px #5a5a5a dashed;
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding-top: 40px;
+  margin-left: 40px;
+  margin-bottom: 70px;
+}
+
+.language {
+
+  width: 100px;
+  height: 100px;
+
+  border: 6px solid #5c5c5c;
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 30px;
+  margin-right: 30px;
+
+}
+
+.language::after{
+  content: "";
+  display: block;
+  flex-grow: auto;
+}
+
+.language:nth-child(3) {
+  margin-bottom: 0;
+}
+
+.language-text {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.languages-per {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.hobbies{
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.hobbie{
+  text-align: center;
+  padding-bottom: 24px;
+  font-weight: 600;
+}
+
+.separator{
+  display: flex;
+  margin-left: 15%;
+  width: 70%;
+  border-bottom: solid grey;
+  margin-bottom: 24px;
+}
+
+.resume {
+  padding: 25px 30px;
+  flex-basis: 70%;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  border-bottom-right-radius: 25px;
+}
+
+.resume-wrap {
+  padding: 40px;
+  border: 3px solid rgba(168, 168, 168, 0.44);
+  border-bottom-right-radius: 25px ;
+  min-height: 100%;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+
+.logo-img {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #39383a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-lines {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 17px;
+  margin-right: 17px;
+}
+
+.logo-line {
+  width: 43px;
+  height: 2px;
+  background-color: #39383a;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.logo-lines_left .logo-line:nth-child(2) {
+  margin-right: 20px;
+  width: 55px;
+}
+
+.logo-lines_right .logo-line:nth-child(2) {
+  margin-left: 20px;
+  width: 55px;
+}
+
+.about {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.name {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 10.75px;
+  margin-bottom: 10px;
+}
+
+.position {
+  display: inline-block;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #808080;
+  margin-bottom: 30px;
+}
+
+.about-address {
+  font-size: 15px;
+  margin-bottom: 15px;
+  font-family: Roboto;
+}
+
+.about-contacts {
+  font-size: 12px;
+}
+
+.about-contacts__link {
+  text-decoration: none;
+  color: #777777;
+}
+
+.heading_dark {
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 37px;
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list-item {
+  position: relative;
+  padding-left: 40px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 2px dashed #ececec;
+}
+
+.list-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.list-item__title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color:#4f4f4f;
+  margin-bottom: 5px;
+}
+
+.list-item__date {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(54, 112, 121);
+  /* text-transform: uppercase; */
+}
+
+.list-item__text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #777;
+}
+
+.list-item_non-border {
+  border: none;
+}
+
+.heading_skills {
+  margin-bottom: 48px;
+}
+
+.skills-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.skills-list__item {
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.level {
+  width: 70%;
+  height: 8px;
+  border: 1px solid #39383a;
+  position: relative;
+}
+.level:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #898989;
+}
+
+.level-100:before{
+  width: 100%;
+}
+
+.level-90:before {
+  width: 90%;
+}
+
+.level-80:before {
+  width: 80%;
+}
+
+.level-70:before {
+  width: 70%;
+}
+
+.level-60:before {
+  width: 60%;
+}
+
+
