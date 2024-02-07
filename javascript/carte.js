@@ -25,6 +25,7 @@ var map = null ;
 
 window.onload = function () {
 
+
     map = Gp.Map.load(
         "carte",
         {
@@ -34,7 +35,6 @@ window.onload = function () {
 
             //centrage automatique de la carte
             center: {
-                //Hopital d'Ales(30)
                 x: -4.620391,
                 y: 48.268698,
 
@@ -46,35 +46,6 @@ window.onload = function () {
 
             //Renseigner les couches
             layersOptions : {
-                "paysvisites" : {
-                    title : "Les pays visités",
-                    description :"Données locales en GeoJSON",
-                    format : "GeoJSON",
-                    url : "../datas/pays_visites.geojson",
-                    styleOptions : {
-                        polyFillColor: "#FF0000"
-                    },
-                    position: 4,
-                    legends : [{
-                        url : "./legende.png",
-                        format : "image/png"
-                    }]
-                },
-
-                "lieuxdevie" : {
-                    title : "Les lieux où j'ai vécu",
-                    description :"Données locales en GeoJSON",
-                    format : "GeoJSON",
-                    url : "../datas/lieux_de_vie.geojson",
-                    styleOptions : {
-                        polyFillColor: "#FF0000"
-                    },
-                    position: 4,
-                    legends : [{
-                        url : "./legende.png",
-                        format : "image/png"
-                    }]
-                },
 
                 "ORTHOIMAGERY.ORTHOPHOTOS":{
                     title : "OrthoPhoto",
@@ -95,6 +66,41 @@ window.onload = function () {
                     visibility: false,
                     opacity : 0.5,
                     position: 3
+                },
+
+                "paysvisites" : {
+                    title : "Les pays visités",
+                    description :"Données locales en GeoJSON",
+                    format : "GeoJSON",
+                    url : "../datas/pays_visites.geojson",
+                    styleOptions : {
+                        polyFillColor: "#CCE5FF",
+                        strokeWidth: 1,
+                        
+                    },
+                    position: 4,
+                    legends : [{
+                        url : "./legende.png",
+                        format : "image/png"
+                    }]
+                },
+
+                "lieuxdevie" : {
+                    title : "Les lieux où j'ai vécu",
+                    description :"Données locales en GeoJSON",
+                    format : "GeoJSON",
+                    url : "../datas/lieux_de_vie.geojson",
+                    styleOptions : {
+                        polyFillColor: "#FF0000",
+                        markerSrc : "../images/icones/map_pointer.png",
+                        markerXAnchor : 5,
+                        markerYAnchor: 8,
+                    },
+                    position: 5,
+                    legends : [{
+                        url : "./legende.png",
+                        format : "image/png"
+                    }]
                 }
             },
 
@@ -106,18 +112,16 @@ window.onload = function () {
                 },
                 "layerSwitcher" : {}
             },
-            
-            markersOptions:[{
-                position: {
-                    x: -4.620391,
-                    y: 48.268698,
-                    projection: "EPSG:3857"
-                },
-                content : "<h1>Pôle Géosciences</h1><br/><p>73 avenue de Paris, Saint-Mandé</p><br/><p><img src ='../images/reunion/fournaise.JPG' height = 150px width = 200px /></p>",
-                url : "../images",
-                //Décalage de l'image par rapport au point donné
-                offset: [-15,-30]
-            }],
         }
     );
 }
+
+var lieuxdevie_popup = L.geoJson(
+    lieuxdevie, {
+        onEachFeature: function(feature, layer){
+            console.log(feature.properties);
+            content = "Nom : " + feature.properties.nom + "<br> En : " + feature.properties.annee_arri; 
+            layer.bindPopup(content);
+        }
+    }
+).addTo(map);

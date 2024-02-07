@@ -25,7 +25,8 @@ html {
 
 body {
   font-family: Helvetica, sans-serif;
-  padding: 10px;
+  padding: 2%;
+  padding-top: 10px;
   padding-bottom: 150px;
   background-image: linear-gradient(to bottom right, #ffffff, #325268);
   background-repeat:no-repeat;
@@ -145,53 +146,113 @@ nav a:hover {
 
 /** -------------------- CORPS-DE-PAGE -------------------- **/
 
+.heading {
+  margin: 0;
+  font-size: 24px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+
+.heading2{
+  margin: 0;
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.sub-heading {
+  border-bottom: 1px solid #e0e0e0;
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+p{
+  text-align: justify;
+  line-height: 150%;
+  text-indent: 30px ;
+}
+
+/* p a {
+  text-decoration: none;
+  color: rgb(102, 147, 177);;
+  font-weight: 400;
+}
+
+p a:hover{
+  font-weight: 600;
+} */
+
 .column {
-    max-height: max-content;
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
-    float: left;
-    width: 30%;
+  max-height: max-content;
+  background-color: white;
+  padding: 2%;
+  margin: 20px;
+  float: left;
+  width: 30%;
+}
+
+.column-photos {
+  max-height: max-content;
+  background-color: white;
+  padding: 2%;
+  margin: 2%;
+  float: left;
+  width: 46%;
 }
 
 /* GALERIES */
 .galerie {
-    max-width: fit-content;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-    gap: 5px;
+  max-width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  gap: 5px;
 }
 
 .galerie div {
-    height: 150px;
-    width: 150px;
-    flex-grow: 1;
+  height: 150px;
+  width: 150px;
+  flex-grow: 1;
 }
 
 #galerie::after{
-    content: "";
-    display: block;
-    flex-grow: auto;
+  content: "";
+  display: block;
+  flex-grow: auto;
 }
 
 .galerie img {  
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: 0.2s linear;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: .2s linear;
 }
 
 .galerie img:hover {
-    border: solid;
-    border-color: #ebebeb;
-    border-width: 3px;
-    transition: .2s linear;
+  border: solid;
+  border-color: #ebebeb;
+  border-width: 3px;
+  transition: .2s linear;
+}
+
+.separator{
+  display: flex;
+  margin-left: 15%;
+  width: 70%;
+  border: solid #ffffff;
+  margin-top: 14px;
+  margin-bottom: 24px;
 }
 
 .row::after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
