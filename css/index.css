@@ -146,6 +146,44 @@ nav a:hover {
 
 /** -------------------- CORPS-DE-PAGE -------------------- **/
 
+/* ---- Organisation de la page ----*/
+
+/* Colone de gauche */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+  padding-left: 5%;
+}
+
+/* Colone de droite*/
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+  padding-right: 5%;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.footer {
+  background-color: rgba(255, 255, 255, 0.709);
+  padding: 20px;
+  margin-top: 20px;
+  text-justify: center;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ---- Texte ---- */
+
 .heading {
   margin: 0;
   font-size: 24px;
@@ -172,41 +210,6 @@ nav a:hover {
   margin-bottom: 37px;
 }
 
-/* Colone de gauche */
-.leftcolumn {   
-  float: left;
-  width: 75%;
-  padding-left: 5%;
-}
-
-/* Colone de droite*/
-.rightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
-  padding-right: 5%;
-}
-
-.card {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.card-image{
-  font-size: 14px;
-}
-
-.card-image img {
-  width: 100%;
-  margin-bottom: 10px;
-  border: 2px solid rgb(50, 77, 101);
-}
-
-.card-image img:hover{
-  border: 2px rgb(50, 77, 101) dashed;
-}
-
 p{
   text-align: justify;
   line-height: 150%;
@@ -221,6 +224,20 @@ p a {
 
 p a:hover{
   font-weight: 600;
+}
+
+.card-image{
+  font-size: 14px;
+}
+
+.card-image img {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid rgb(50, 77, 101);
+}
+
+.card-image img:hover{
+  border: 2px rgb(50, 77, 101) dashed;
 }
 
 /* GALERIES */
@@ -255,12 +272,6 @@ p a:hover{
   width: 100%;
   object-fit: cover;
   transition: 0.2s linear;
-}
-
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .logo-image{

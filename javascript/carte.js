@@ -3,26 +3,11 @@
  * Date : 16/10/2023
  */
 
-var map = null ;
 
-// /*Eléments contenu dans le popup*/
-// const container = document.getElementById('popup');
-// let content = document.getElementById('popup-content');
-// const closer = document.getElementById('popup-closer');
+var map_sdk = null;
+var map = null;
 
-// /* Crée une superposition pour ancrer le popup à la carte */
-// const overlay = new ol.Overlay({
-//     element: container
-// });
-
-// /* Ajout d'un gestionnaire de clics pour masquer le popup
-//   * @return {boolean} */
-// closer.onclick = function () {
-//     overlay.setPosition(undefined);
-//     closer.blur();
-//     return false;
-// };
-
+//------------------------------> COUCHES
 window.onload = function () {
 
 
@@ -76,7 +61,6 @@ window.onload = function () {
                     styleOptions : {
                         polyFillColor: "#CCE5FF",
                         strokeWidth: 1,
-                        
                     },
                     position: 4,
                     legends : [{
@@ -112,16 +96,70 @@ window.onload = function () {
                 },
                 "layerSwitcher" : {}
             },
+
+            mapEventsOptions: {
+                // Appel de la fonction après le chargement de la carte
+                "mapLoaded": after_init_map
+            },
         }
     );
 }
 
-var lieuxdevie_popup = L.geoJson(
-    lieuxdevie, {
-        onEachFeature: function(feature, layer){
-            console.log(feature.properties);
-            content = "Nom : " + feature.properties.nom + "<br> En : " + feature.properties.annee_arri; 
-            layer.bindPopup(content);
+//------------------------------> FONCTIONS
+
+/*Eléments contenu dans le popup*/
+const container = document.getElementById('popup');
+let content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+/* Crée une superposition pour ancrer le popup à la carte */
+const overlay = new ol.Overlay({
+    element: container
+});
+
+/* Ajout d'un gestionnaire de clics pour masquer le popup
+  * @return {boolean} */
+closer.onclick = function () {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
+/* Définition du contenu de la pop-up */
+function after_init_map() {
+    var map_ol = map.getLibMap();
+    map_ol.addOverlay(overlay);
+
+    map_ol.on('click', function (evt) {
+        var feature = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+            return feature;
+        });
+
+        console.log(feature);
+    
+        if (feature) {
+            // if (layer == map.getLayersByName(lieuxdevie)){
+            /* Ici je cherche à mettre en place un overlay différent selon la couche sur laquelle l'event apparait
+            Je n'ai pas réussi à trouver la bonne expression*/
+
+            if (feature.get('image') != null){
+                content.innerHTML = "Destination : <strong>" + feature.get('nom') + "</strong>,<br> J'arrive ici en " + feature.get('annee_arri') + " et y vis pendant " + feature.get('duree_an') + " ans." +
+                '<br> <center><img src="' + feature.get('image') +'" height=187 width=250 alt="Pas de photo"></center> <br> <center>'+ feature.get('code_dep')+"</center>"; 
+                const coordinate = evt.coordinate;
+                const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+                overlay.setPosition(coordinate);
+            } else {
+                content.innerHTML = "Destination : <strong>" + feature.get('nom') + "</strong>,<br> J'arrive ici en " + feature.get('annee_arri') + " et y vis pendant " + feature.get('duree_an') + " ans." +
+                "<br> <br> <center><i>Pas de photo</i></center>"; 
+                const coordinate = evt.coordinate;
+                const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+                overlay.setPosition(coordinate);
+            }
+    
+        } else {
+            overlay.setPosition(undefined);
         }
-    }
-).addTo(map);
+    });
+}
+
+

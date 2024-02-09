@@ -62,12 +62,14 @@
                 <div class="card">
                     <h2 class="heading"> Ma carte </h2>
                     <h5 class="sub-heading">Lieux de vie et voyages</h5>
+                    <!-- Création du style popup et de son contenu-->
+                    <div id="popup" class="ol-popup">
+                        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                        <div id="popup-content"></div>
+                    </div>
                     <div id="carte"></div>
                     <script src="../javascript/carte.js"></script>
-                    <p class="card-text">
-                        Cette carte recense tous les lieux dans lesquels j'ai vécu de ma naissance à ce jour, représentés par des figurés ponctuels.
-                        Elle indique également les pays que j'ai visité au cour de ma vie.  
-                    </p>
+
                 </div>
 
             </div>
@@ -78,11 +80,41 @@
 
                 <div class="card">
                     <h3 class="heading2"> Légende </h3>
+
+                    <ul class="legend">
+
+                        <li class="element-legend">
+                            <div class="icone-legend"><div class="carre-bleu"></div></div>
+                            Pays visités
+                        </li>
+
+                        <li class="element-legend">
+                            <div class="icone-legend"><img src="../images/icones/map_pointer.png"></div>
+                            Lieux où j'ai vécu
+                        </li>
+
+                    </ul>
+
                 </div>
 
-
+                <div class="card">
+                    <p class="card-text">
+                        Cette carte recense tous les lieux où j'ai vécu de ma naissance à ce jour, représentés par des figurés ponctuels.
+                        Elle indique également les pays que j'ai visité au cour de ma vie.  
+                    </p>                    
+                </div>
 
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <a href="./copyrights.html">
+                <div class="footer">
+                    <center>Copyright</center>
+                </div>
+            </a>
 
         </div>
         

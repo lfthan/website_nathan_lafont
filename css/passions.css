@@ -146,6 +146,50 @@ nav a:hover {
 
 /** -------------------- CORPS-DE-PAGE -------------------- **/
 
+/* ---- Organisation de la page ----*/
+
+.column {
+  max-height: max-content;
+  background-color: white;
+  padding: 2%;
+  margin: 20px;
+  float: left;
+  width: 30%;
+}
+
+.column-photos {
+  max-height: max-content;
+  background-color: white;
+  padding: 2%;
+  margin: 2%;
+  float: left;
+  width: 46%;
+}
+
+.separator{
+  display: flex;
+  margin-left: 15%;
+  width: 70%;
+  border: solid #ffffff;
+  margin-top: 14px;
+  margin-bottom: 24px;
+}
+
+.footer {
+  background-color: rgba(255, 255, 255, 0.709);
+  padding: 20px;
+  margin-top: 20px;
+  text-justify: center;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ---- Texte ---- */
+
 .heading {
   margin: 0;
   font-size: 24px;
@@ -178,7 +222,7 @@ p{
   text-indent: 30px ;
 }
 
-/* p a {
+p a, a {
   text-decoration: none;
   color: rgb(102, 147, 177);;
   font-weight: 400;
@@ -186,24 +230,6 @@ p{
 
 p a:hover{
   font-weight: 600;
-} */
-
-.column {
-  max-height: max-content;
-  background-color: white;
-  padding: 2%;
-  margin: 20px;
-  float: left;
-  width: 30%;
-}
-
-.column-photos {
-  max-height: max-content;
-  background-color: white;
-  padding: 2%;
-  margin: 2%;
-  float: left;
-  width: 46%;
 }
 
 /* GALERIES */
@@ -240,19 +266,4 @@ p a:hover{
   border-color: #ebebeb;
   border-width: 3px;
   transition: .2s linear;
-}
-
-.separator{
-  display: flex;
-  margin-left: 15%;
-  width: 70%;
-  border: solid #ffffff;
-  margin-top: 14px;
-  margin-bottom: 24px;
-}
-
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
 }

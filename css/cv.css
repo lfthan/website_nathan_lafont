@@ -496,4 +496,15 @@ nav a:hover {
   width: 60%;
 }
 
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
+.footer {
+  background-color: rgba(255, 255, 255, 0.709);
+  padding: 20px;
+  margin-top: 20px;
+  text-justify: center;
+}
