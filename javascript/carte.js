@@ -125,41 +125,92 @@ closer.onclick = function () {
     return false;
 };
 
-/* Définition du contenu de la pop-up */
+// /* Définition du contenu de la pop-up */
+// function after_init_map() {
+//     var map_ol = map.getLibMap();
+//     map_ol.addOverlay(overlay);
+
+//     map_ol.on('click', function (evt) {
+//         var feature = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+//             return feature;
+//         });
+
+//         console.log(feature);
+    
+//         if (feature) {
+//             // if (layer == map.getLayersByName(lieuxdevie)){
+//             /* Ici je cherche à mettre en place un overlay différent selon la couche sur laquelle l'event apparait
+//             Je n'ai pas réussi à trouver la bonne expression*/
+
+//             if (feature.get('image') != null){
+//                 content.innerHTML = "Destination : <strong>" + feature.get('nom') + "</strong>,<br> J'arrive ici en " + feature.get('annee_arri') + " et y vis pendant " + feature.get('duree_an') + " ans." +
+//                 '<br> <center><img src="' + feature.get('image') +'" height=187 width=250 alt="Pas de photo"></center> <br> <center>'+ feature.get('code_dep')+"</center>"; 
+//                 const coordinate = evt.coordinate;
+//                 const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+//                 overlay.setPosition(coordinate);
+//             } else {
+//                 content.innerHTML = "Destination : <strong>" + feature.get('name_fr') + "</strong>,<br> J'arrive ici en " + feature.get('annee_voyage') + " et y vis pendant " + feature.get('duree_an') + " ans." +
+//                 "<br> <br> <center><i>Pas de photo</i></center>"; 
+//                 const coordinate = evt.coordinate;
+//                 const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+//                 overlay.setPosition(coordinate);
+//             }
+    
+//         } else {
+//             overlay.setPosition(undefined);
+//         }
+//     });
+// }
+
+/* Fonction appelée après le chargement de la carte */
 function after_init_map() {
     var map_ol = map.getLibMap();
     map_ol.addOverlay(overlay);
 
     map_ol.on('click', function (evt) {
-        var feature = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
-            return feature;
+        var result = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+            return { feature: feature, layer: layer };
         });
 
-        console.log(feature);
-    
-        if (feature) {
-            // if (layer == map.getLayersByName(lieuxdevie)){
-            /* Ici je cherche à mettre en place un overlay différent selon la couche sur laquelle l'event apparait
-            Je n'ai pas réussi à trouver la bonne expression*/
+        if (result && result.feature && result.layer) {
+            var feature = result.feature;
+            var layer = result.layer;
 
-            if (feature.get('image') != null){
-                content.innerHTML = "Destination : <strong>" + feature.get('nom') + "</strong>,<br> J'arrive ici en " + feature.get('annee_arri') + " et y vis pendant " + feature.get('duree_an') + " ans." +
-                '<br> <center><img src="' + feature.get('image') +'" height=187 width=250 alt="Pas de photo"></center> <br> <center>'+ feature.get('code_dep')+"</center>"; 
-                const coordinate = evt.coordinate;
-                const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
-                overlay.setPosition(coordinate);
-            } else {
-                content.innerHTML = "Destination : <strong>" + feature.get('nom') + "</strong>,<br> J'arrive ici en " + feature.get('annee_arri') + " et y vis pendant " + feature.get('duree_an') + " ans." +
-                "<br> <br> <center><i>Pas de photo</i></center>"; 
-                const coordinate = evt.coordinate;
-                const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
-                overlay.setPosition(coordinate);
+            // Calcul du centroïde de la géométrie de la feature cliquée
+            var geometry = feature.getGeometry();
+            var centroid = ol.extent.getCenter(geometry.getExtent());
+
+            // Vérification de la couche cliquée et affichage du pop-up
+            if (layer.get('title') === 'Les lieux où j\'ai vécu') {
+                // Pop-up spécifique pour la couche "lieuxdevie"
+                content.innerHTML = `
+                    <h3>Lieux de vie</h3>
+                    <p><strong>Nom : </strong>${feature.get('nom')}</p>
+                    <p><strong>Année d'arrivée : </strong>${feature.get('annee_arri')}</p>
+                    <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
+                    <p><strong>Département : </strong>${feature.get('code_dep')}</p>
+                    ${feature.get('image') ? `<img src="${feature.get('image')}" alt="Image" style="width:250px;height:187px;">` : '<i>Pas de photo disponible</i>'}
+                `;
+            } else if (layer.get('title') === 'Les pays visités') {
+                // Pop-up spécifique pour la couche "paysvisites"
+                content.innerHTML = `
+                    <h3>Pays visité</h3>
+                    <p><strong>Pays : </strong>${feature.get('name_fr')}</p>
+                    <p><strong>Année du voyage : </strong>${feature.get('annee_voyage')}</p>
+                    <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
+                    <i>Pas de photo disponible pour ce pays</i>
+                `;
             }
-    
+
+            // Positionnement de l'overlay au centroïde de la feature
+            overlay.setPosition(centroid);
         } else {
+            // Masquer l'overlay si aucun élément n'est cliqué
             overlay.setPosition(undefined);
         }
     });
 }
+
+
 
 
