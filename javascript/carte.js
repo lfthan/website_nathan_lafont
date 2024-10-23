@@ -1,7 +1,7 @@
-/**
- * Auteur : Nathan Lafont
- * Date : 16/10/2023
- */
+// /**
+//  * Auteur : Nathan Lafont
+//  * Date : 16/10/2023
+//  */
 
 
 var map_sdk = null;
@@ -105,7 +105,7 @@ window.onload = function () {
     );
 }
 
-//------------------------------> FONCTIONS
+// //------------------------------> FONCTIONS
 
 /*Eléments contenu dans le popup*/
 const container = document.getElementById('popup');
@@ -125,18 +125,20 @@ closer.onclick = function () {
     return false;
 };
 
-// /* Définition du contenu de la pop-up */
+/* Définition du contenu de la pop-up */
 // function after_init_map() {
 //     var map_ol = map.getLibMap();
 //     map_ol.addOverlay(overlay);
 
 //     map_ol.on('click', function (evt) {
-//         var feature = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
-//             return feature;
+//         var r = map_ol.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+//             return {feature, layer};
 //         });
+//         var feature = r.feature;
+//         var layer = r.layer; 
 
 //         console.log(feature);
-    
+            
 //         if (feature) {
 //             // if (layer == map.getLayersByName(lieuxdevie)){
 //             /* Ici je cherche à mettre en place un overlay différent selon la couche sur laquelle l'event apparait
@@ -162,6 +164,7 @@ closer.onclick = function () {
 //     });
 // }
 
+
 /* Fonction appelée après le chargement de la carte */
 function after_init_map() {
     var map_ol = map.getLibMap();
@@ -175,31 +178,34 @@ function after_init_map() {
         if (result && result.feature && result.layer) {
             var feature = result.feature;
             var layer = result.layer;
-
+            console.log(feature.get('name'));
+            console.log(layer);
             // Calcul du centroïde de la géométrie de la feature cliquée
             var geometry = feature.getGeometry();
             var centroid = ol.extent.getCenter(geometry.getExtent());
 
             // Vérification de la couche cliquée et affichage du pop-up
-            if (layer.get('title') === 'Les lieux où j\'ai vécu') {
+            if (layer.title === "Les lieux où j'ai vécu") {
                 // Pop-up spécifique pour la couche "lieuxdevie"
-                content.innerHTML = `
-                    <h3>Lieux de vie</h3>
-                    <p><strong>Nom : </strong>${feature.get('nom')}</p>
-                    <p><strong>Année d'arrivée : </strong>${feature.get('annee_arri')}</p>
-                    <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
-                    <p><strong>Département : </strong>${feature.get('code_dep')}</p>
-                    ${feature.get('image') ? `<img src="${feature.get('image')}" alt="Image" style="width:250px;height:187px;">` : '<i>Pas de photo disponible</i>'}
-                `;
-            } else if (layer.get('title') === 'Les pays visités') {
+                // content.innerHTML = `
+                //     <h3>Lieux de vie</h3>
+                //     <p><strong>Nom : </strong>${feature.get('nom')}</p>
+                //     <p><strong>Année d'arrivée : </strong>${feature.get('annee_arri')}</p>
+                //     <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
+                //     <p><strong>Département : </strong>${feature.get('code_dep')}</p>
+                //     ${feature.get('image') ? `<img src="${feature.get('image')}" alt="Image" style="width:250px;height:187px;">` : '<i>Pas de photo disponible</i>'}
+                // `;
+                content.innerHTML = "lieux de vie";
+            } else if (layer.get('title') === "Les pays visités") {
                 // Pop-up spécifique pour la couche "paysvisites"
-                content.innerHTML = `
-                    <h3>Pays visité</h3>
-                    <p><strong>Pays : </strong>${feature.get('name_fr')}</p>
-                    <p><strong>Année du voyage : </strong>${feature.get('annee_voyage')}</p>
-                    <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
-                    <i>Pas de photo disponible pour ce pays</i>
-                `;
+                // content.innerHTML = `
+                //     <h3>Pays visité</h3>
+                //     <p><strong>Pays : </strong>${feature.get('name_fr')}</p>
+                //     <p><strong>Année du voyage : </strong>${feature.get('annee_voyage')}</p>
+                //     <p><strong>Durée (ans) : </strong>${feature.get('duree_an')}</p>
+                //     <i>Pas de photo disponible pour ce pays</i>
+                // `;
+                content.innerHTML = "Pays visité";
             }
 
             // Positionnement de l'overlay au centroïde de la feature
@@ -210,7 +216,3 @@ function after_init_map() {
         }
     });
 }
-
-
-
-
