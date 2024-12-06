@@ -142,22 +142,41 @@ window.onload = function () {
 
 
 //---------------------------------------------------> POP - UP
+// /*Eléments contenu dans le popup*/
+// const container = document.getElementById('popup');
+// let content = document.getElementById('popup-content');
+// const closer = document.getElementById('popup-closer');
+
 /*Eléments contenu dans le popup*/
-const container = document.getElementById('popup');
-let content = document.getElementById('popup-content');
-const closer = document.getElementById('popup-closer');
+const fixedPanel = document.getElementById('fixed-panel');
+const panelContent = document.getElementById('panel-content');
+const panelCloser = document.getElementById('panel-closer');
+
+console.log(panelCloser);
 
 /* Crée une superposition pour ancrer le popup à la carte */
-const overlay = new ol.Overlay({
-    element: container
-});
+// const overlay = new ol.Overlay({
+//     element: fixedPanel
+// });
 
-/* Ajout d'un gestionnaire de clics pour masquer le popup
-  * @return {boolean} */
-closer.onclick = function () {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return false;
+
+// /* Ajout d'un gestionnaire de clics pour masquer le popup
+//   * @return {boolean} */
+// closer.onclick = function () {
+//     overlay.setPosition(undefined);
+//     closer.blur();
+//     return false;
+// };
+
+// Show fixed panel
+function showPanel(content) {
+    panelContent.innerHTML = content;
+    fixedPanel.style.display = 'block'; // Show the panel
+}
+
+// Hide fixed panel
+panelCloser.onclick = function () {
+    fixedPanel.style.display = 'none'; // Hide the panel
 };
 
 
@@ -165,7 +184,7 @@ closer.onclick = function () {
 
 function after_init_map(){
     map = map_sdk.getLibMap();
-    map.addOverlay(overlay);
+    // map.addOverlay(overlay);
 
     map.on('click', function (evt) {
         var result = map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
@@ -179,11 +198,13 @@ function after_init_map(){
             var geometry = feature.getGeometry();
             var centroid = ol.extent.getCenter(geometry.getExtent());
 
+            let content ='';
+
             // Vérification de la couche cliquée et affichage du pop-up
             if (layer.get('name') === "ldv") {
                 console.log(layer.get('name'));
                 // Pop-up spécifique pour la couche "lieuxdevie"
-                content.innerHTML = `
+                content = `
                     <h3>Lieu de vie</h3>
                     <p><strong>Nom : </strong>${feature.get('nom')}</p>
                     <p><strong>Année d'arrivée : </strong>${feature.get('annee_arri')}</p>
@@ -194,20 +215,23 @@ function after_init_map(){
             } else if (layer.get('name') === "pv") {
                 console.log(layer.get('name'));
                 // Pop-up spécifique pour la couche "paysvisites"
-                content.innerHTML = `
+                content = `
                     <h3>Pays visité</h3>
                     <p><strong>Pays : </strong>${feature.get('name_fr')}</p>
                     <p><strong>Année du voyage : </strong>${feature.get('annee_voyage')}</p>
                     <i>Pas de photo disponible pour ce pays</i>
                 `;
-                content.innerHTML = "Pays visité";
             }
 
             // Positionnement de l'overlay au centroïde de la feature
-            overlay.setPosition(centroid);
+            // overlay.setPosition(centroid);
+            showPanel(content);
+
         } else {
             // Masquer l'overlay si aucun élément n'est cliqué
-            overlay.setPosition(undefined);
+            // overlay.setPosition(undefined);
+
+            fixedPanel.style.display = 'none'; //Hide if no feature clicked
         }
     });
 

@@ -313,3 +313,28 @@ legend{
 .ol-popup-closer:after {
   content: "✖";
 }
+
+/* Style panneau fixe */
+.fixed-panel {
+  top: 200px; /* Adjust as necessary */
+  right: 20px; /* Adjust as necessary */
+  max-height : 400px;
+  height : 400px;
+  margin-top : 20px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none; /* Initially hidden */
+  bottom: 230px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}

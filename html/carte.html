@@ -62,13 +62,16 @@
                 <div class="card">
                     <h2 class="heading"> Ma carte </h2>
                     <h5 class="sub-heading">Lieux de vie et voyages</h5>
-                    <!-- Création du style popup et de son contenu-->
-                    <div id="popup" class="ol-popup">
+
+                    <!-- Création du style popup et de son contenu -->
+                    <!-- <div id="popup" class="ol-popup">
                         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
                         <div id="popup-content"></div>
+                    </div> -->
+
+                    <div id="carte">
                     </div>
-                    <div id="carte"></div>
-                    <script src="../javascript/map.js"></script>
+
                 </div>
 
             </div>
@@ -103,6 +106,16 @@
                     </p>                    
                 </div>
 
+                    <!-- Création d'un panneau et de son contenu -->
+                <div id="fixed-panel" class="fixed-panel">
+                    <h2>Details</h2>
+                    <div id="panel-content"></div>
+                    <button id="panel-closer" class="panel-closer">Close</button>
+                    <!-- <button id="panel-closer">Close</button> -->
+                </div>
+                    
+
+
             </div>
 
         </div>
@@ -117,6 +130,7 @@
 
         </div>
         
+        <script src="../javascript/map.js"></script>
     </body>
 
 </html>
