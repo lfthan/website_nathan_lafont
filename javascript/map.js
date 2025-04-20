@@ -89,6 +89,13 @@ var layer_pv = new ol.layer.Vector({
 layer_pv.set('name', 'pv');
 
 
+var bglayer = new ol.layer.Tile({
+    source: new ol.source.XYZ({ 
+        url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+   }) 
+});
+
+
 // ------------------------------> INIT MAP
 window.onload = function () {
 
@@ -112,16 +119,16 @@ window.onload = function () {
             zoom: 1,
 
             //Renseigner les couches
-            layersOptions : {
+            // layersOptions : {
 
-                "osm" : {
-                    title : "OSM",
-                    description :"OpenStreetMap",
-                    format: "osm",
-                    url: "https://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
-                    position: 1,
-                },
-            },
+            //     "osm" : {
+            //         title : "OSM",
+            //         description :"OpenStreetMap",
+            //         format: "osm",
+            //         url: "https://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+            //         position: 1,
+            //     },
+            // },
 
             //Options de controle
             controlsOptions: {
@@ -179,6 +186,7 @@ panelCloser.onclick = function () {
     fixedPanel.style.display = 'none'; // Hide the panel
 };
 
+map_sdk.addLayer(bglayer);
 
 // ------------------------------> INIT MAP
 

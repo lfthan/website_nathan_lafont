@@ -332,9 +332,16 @@ legend{
   overflow-x: scroll;
 }
 
+.button {
+  border-radius : 100%;
+}
+
 .popup-closer {
   text-decoration: none;
   position: absolute;
   top: 2px;
   right: 8px;
 }
+
+
+
