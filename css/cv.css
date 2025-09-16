@@ -166,12 +166,12 @@ nav a:hover {
 }
 
 .profile-photo{
-  height: 320px;
+  height: 470px;
   margin: 40px;
   border-radius: 25px;
-  background-image: url("../images/IMG_5767.JPG");
+  background-image: url("../images/photo_cv.JPG");
   background-size: cover;
-  background-position: 0% 36%;
+  background-position: 0% 0%;
   background-repeat: no-repeat;
 
 }
