@@ -165,7 +165,7 @@ nav a:hover {
   border-top-left-radius: 25px;
 }
 
-.profile-photo{
+/* .profile-photo{
   height: 430px;
   margin: 40px;
   border-radius: 25px;
@@ -173,7 +173,22 @@ nav a:hover {
   background-size: cover;
   background-position: 0% 0%;
   background-repeat: no-repeat;
+} */
 
+.profile-photo {
+  width: 200px;              /* largeur désirée */
+  height: 200px;             /* hauteur désirée */
+  overflow: hidden;          /* cache la partie qui dépasse = "crop" */
+  border-radius: 20%;        /* optionnel : rond */
+  margin: auto;
+  margin-top: 30px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* garde les proportions et crop automatiquement */
+  object-position: center 10%;
 }
 
 .profile-info {
@@ -354,10 +369,9 @@ nav a:hover {
 }
 
 .about {
-  padding-bottom: 30px;
-  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 20px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .name {
@@ -392,8 +406,10 @@ nav a:hover {
 
 .heading_dark {
   font-weight: 600;
+  border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 37px;
+  padding-top: 15px;
 }
 
 .list {
@@ -404,9 +420,8 @@ nav a:hover {
 .list-item {
   position: relative;
   padding-left: 40px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  border-bottom: 2px dashed #ececec;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .list-item:before {
@@ -424,7 +439,7 @@ nav a:hover {
   font-size: 15px;
   text-transform: uppercase;
   color:#4f4f4f;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .list-item__date {
