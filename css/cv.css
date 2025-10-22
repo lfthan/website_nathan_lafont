@@ -205,6 +205,10 @@ nav a:hover {
   margin-bottom: 50px;
 }
 
+.profile-text b{
+  color:white;
+}
+
 .heading {
   margin: 0;
   font-size: 24px;
